@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 import React from "react"
 import styles from "../styles/Navbar.module.css"
 import heroIMG from "../public/hero-logo.png"
@@ -15,8 +14,8 @@ const Navbar = () => {
             <div className={styles.dropdown}>
                 <a href="#" >Programs & Events</a>
                 <div className={styles.dropdownContent}>
-                    <a href="/oppurtunities">Oppurtunities</a>
-                    <a href="/events">Events</a>
+                    <a href="/Oppurtunities">Oppurtunities</a>
+                    <a href="/Events">Events</a>
                     {/* <a href="#">Contact</a> */}
                 </div>
             </div>

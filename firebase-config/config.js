@@ -1,13 +1,13 @@
 const firebase = require("firebase");
 const firebaseConfig = {
-    apiKey: "AIzaSyBZCnbWq9iCz8y6dCnMim21vgKrJKa6pXQ",
-    authDomain: "my-web-app-ec666.firebaseapp.com",
-    projectId: "my-web-app-ec666",
-    storageBucket: "my-web-app-ec666.appspot.com",
-    messagingSenderId: "365799176264",
-    appId: "1:365799176264:web:88421daf4762fa61e3007d",
-    measurementId: "G-X883RWYM1L"
-};
+    apiKey: "AIzaSyCdggYhrPUCX3RCKHnI7pGe8SBVeoQoqro",
+    authDomain: "avinya-connect.firebaseapp.com",
+    projectId: "avinya-connect",
+    storageBucket: "avinya-connect.appspot.com",
+    messagingSenderId: "913694423532",
+    appId: "1:913694423532:web:70c8198e75709c07a328c9",
+    measurementId: "G-HESGGHS80F"
+  };
 // module.exports = firebaseConfig;
 if(!firebase.apps.length){ 
     firebase.initializeApp(firebaseConfig);

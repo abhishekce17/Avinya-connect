@@ -8,7 +8,7 @@ const Footer = () => {
         className="container-fluid text-center m-0"
         style={{ backgroundColor: "#5F9EA0" }}>
         <div className="py-4 px-1">
-          <h2 className="text-light">Interested in working with me ?</h2>
+          <h2 className="text-light">Know About Us</h2>
             <Link href="/contact">
               <button className="btn btn-outline-light mt-3">Lets Talk</button>
             </Link>
@@ -36,12 +36,7 @@ const Footer = () => {
           </div>
           <div className="col-12 col-md-4 text-light py-5 text-justify">
             <p style={{ textAlign: "justify" }}>
-              Lorem ipsum dolor sit amet para in siquential twitrer form text
-              year ini justified consectetur adipisicing elit. Commodi ullam at
-              incidunt nemo? Omnis, praesentium.for Magnam praesentium, sapiente
-              iure consequuntur soluta doloremque natus dista, remedials tuit
-              see junly worried which let's ghhghg hgej ksksk ksi is the
-              complicate it.
+          This website will keep a track of alumni's from government colleges and aided colleges where the alumni's can reconnect to their respective Colleges for further education,scholarship and documentations and reccomendation from the college also students of the respective colleges and connect with their alumni's and can have guidance from them.
             </p>
           </div>
           <div className="col-12 col-md-4 py-2">
@@ -59,12 +54,6 @@ const Footer = () => {
               </span>
             </a>
             <a className="d-block text-light p-1" href="c/">
-              GitHub{" "}
-              <span>
-                <i className="fa fa-github"></i>
-              </span>
-            </a>
-            <a className="d-block text-light p-1" href="c/">
               Whatsapp{" "}
               <span>
                 <i className="fa fa-whatsapp"></i>
@@ -79,7 +68,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="col-12 text-dark">
-          <p className="m-0 p-2">Copyright © yadnyesh khotre 2022</p>
+          <p className="m-0 p-2">Copyright ©Team Avinya 2023</p>
         </div>
       </div>
     </footer>

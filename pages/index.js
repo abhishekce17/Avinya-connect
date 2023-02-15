@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 
@@ -10,8 +8,6 @@ export default function Home() {
     "height":"auto",
     "width":"100%"
   }
-
-
   return (
     <>
       <main className={styles.main} >
@@ -53,6 +49,7 @@ export default function Home() {
             <span className="sr-only">Next</span>
           </button>
         </div>
+        <div className="featuredSection"></div>
       </main>
     </>
   )

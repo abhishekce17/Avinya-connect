@@ -13,11 +13,15 @@ import {
 }
     from "mdb-react-ui-kit";
 import styles from "../styles/Signin.module.css"
+import { useRouter } from "next/router";
 
 function App() {
 
     const [alumniDetails,setAlumniDetails] = useState({"first name":"", "last name":"", "middle name":"", gender:"male", "number":"",email:"", password:"", "college name":"", "gr no.":"", "academic year":"", "Birth Date":""})
     const [confirmPass, setConfirmPass] = useState("")
+    const router = useRouter()
+
+
     function handleChange(e){
         const {name, value} = e.target
         if(name === "confirmation") return setConfirmPass(value)
@@ -35,7 +39,19 @@ function App() {
     function register(e){
         e.preventDefault()
         if(confirmPass === alumniDetails.password){
-            console.log(alumniDetails)
+            // console.log(alumniDetails)
+        const api = fetch('/api/alumniregister', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(alumniDetails),
+          })
+          api.then((res)=>{
+            if(res.status==200){
+              router.push ("/")
+            }
+          })
         }
     }
 

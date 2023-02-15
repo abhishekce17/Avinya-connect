@@ -1,0 +1,44 @@
+.eventSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventSection{
+    padding: 100px;
+}
+
+.upcoming, .recent{
+    /* width: 80%; */
+    margin: 80px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 40px;
+    row-gap:40px ;
+}
+
+.eventCard{
+    width: 300px;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow:1.5px 1.5px 3px 5px rgba(110, 110, 110, 0.2); ;
+}
+
+.eventCard .text{
+    padding: 10px;
+}
+
+.eventCard img{
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+
+.eventCard .text .dateTime{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dateTime p{
+    margin: 0;
+}
+
