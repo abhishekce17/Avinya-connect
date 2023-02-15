@@ -3,65 +3,70 @@ import React, { useContext, useEffect } from "react"
 import styles from "../styles/Navbar.module.css"
 import heroIMG from "../public/hero-logo.png"
 import SiteContext from "@/Context/SiteContext"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
 const Navbar = (props) => {
     const context = useContext(SiteContext)
+    const router = useRouter()
+    console.log(context.userType[0].userType)
+    function logOut() {
+        const api = fetch('/api/logout', {
+            method: 'GET',
+        })
+        api.then((res) => {
+            context.userType[1]({})
+            router.push("/")
+        })
+    }
     return (
         <nav className={styles.navbar} >
             <Image width={1000} height={1000} className={styles.homeLogo} src={heroIMG} alt="Avinya connect" ></Image>
             <div className={styles.dropdown}>
-                <a href="/" className={styles.dropbtn}>Home</a>
+                <Link href="/" className={styles.dropbtn}>Home</Link>
             </div>
             <div className={styles.dropdown}>
-                <a href="#" >Programs & Events</a>
+                <Link href="#" >Programs & Events</Link>
                 <div className={styles.dropdownContent}>
-                    <a href="/Oppurtunities">Oppurtunities</a>
-                    <a href="/Events">Events</a>
-                    {/* <a href="#">Contact</a> */}
+                    <Link href="/Oppurtunities">Oppurtunities</Link>
+                    <Link href="/Events">Events</Link>
+                    {/* <Link href="#">Contact</Link> */}
                 </div>
             </div>
             <div className={styles.dropdown}>
-                <a href="#" className={styles.dropbtn}>About</a>
+                <Link href="#" className={styles.dropbtn}>About</Link>
                 <div className={styles.dropdownContent}>
-                    <a href="/Administrators">Administrator</a>
-                    {/* <a href="#">Staff</a> */}
-                    <a href="Contact">Contact</a>
+                    <Link href="/Administrators">Administrator</Link>
+                    {/* <Link href="#">Staff</Link> */}
+                    <Link href="Contact">Contact</Link>
                 </div>
             </div>
             <div className={styles.dropdown}>
-                <a href="/AlumniNetwork" className={styles.dropbtn}>Alumni</a>
+                <Link href="/AlumniNetwork" className={styles.dropbtn}>Alumni</Link>
             </div>
-            {context.userType[0].status === "200" ?
+            {(context.userType[0].status === "200" && context.userType[0].userType !== "") ?
                 <>
                     <div className={styles.dropdown}>
-                        <a href="#" >Dashboard</a>
-                        <div className={styles.dropdownContent}>
-                            <a href="/AlumniRegister" >Alumni Register</a>
-                            <a href="/CollegeRegister" >College Register</a>
-                        </div>
+                        <Link href="Dashboard" >Dashboard</Link>
                     </div>
                     <div className={styles.dropdown}>
-                        <a href="#" >Log out</a>
-                        <div className={styles.dropdownContent}>
-                            <a href="/AlumniLogin" >Alumni Lgoin</a>
-                            <a href="/CollegeSignin" >College Login</a>
-                        </div>
+                        <Link href="" onClick={logOut} >Log out</Link>
                     </div>
                 </>
                 :
                 <>
                     <div className={styles.dropdown}>
-                        <a href="#" >Register</a>
+                        <Link href="#" >Register</Link>
                         <div className={styles.dropdownContent}>
-                            <a href="/AlumniRegister" >Alumni Register</a>
-                            <a href="/CollegeRegister" >College Register</a>
+                            <Link href="/AlumniRegister" >Alumni Register</Link>
+                            <Link href="/CollegeRegister" >College Register</Link>
                         </div>
                     </div>
                     <div className={styles.dropdown}>
-                        <a href="#" >Login</a>
+                        <Link href="#" >Login</Link>
                         <div className={styles.dropdownContent}>
-                            <a href="/AlumniLogin" >Alumni Lgoin</a>
-                            <a href="/CollegeSignin" >College Login</a>
+                            <Link href="/AlumniLogin" >Alumni Lgoin</Link>
+                            <Link href="/CollegeSignin" >College Login</Link>
                         </div>
                     </div>
                 </>

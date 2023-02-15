@@ -34,6 +34,9 @@ function AlumniLogin() {
             },
             body: JSON.stringify(alumniEmaiPassword),
         })
+        api.then((res)=>{
+            if(res.status === 200) router.push("/")
+        })
     }
 
     return (<div className={styles.signInContainer} >

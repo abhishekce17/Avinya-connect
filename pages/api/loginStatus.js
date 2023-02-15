@@ -11,7 +11,6 @@ export default async function handler(req, res) {
     else {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log(user.email)
                 db.collection("Alumni").where( "email", "==", user.email).get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
                             res.status(200).json({"status":"200", "userType":"alumni"})

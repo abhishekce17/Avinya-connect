@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     MDBContainer,
     MDBCard,
@@ -10,8 +10,15 @@ import {
  }
     from "mdb-react-ui-kit";
 import styles from "../styles/Signin.module.css"
+import { useRouter } from "next/router";
+import SiteContext from "@/Context/SiteContext";
 
-function CollegeSignin() {
+function CollegeSignin(props) {
+    const context = useContext(SiteContext)
+    useEffect(()=>{
+        context.userType[1](props.fetchData)
+      },[])
+    const router = useRouter() 
     const [CollegeEmaiPassword, setCollegeEmaiPassword] = useState({ "college name": "", "college id": "", password: "" })
     function handleChange(e) {
         const { name, value } = e.target
@@ -28,6 +35,11 @@ function CollegeSignin() {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(CollegeEmaiPassword),
+          })
+          api.then((res)=>{
+            if(res.status === 200){
+                router.push("/")
+            }
           })
     }
 
@@ -68,5 +80,19 @@ function CollegeSignin() {
     </div>
     );
 }
+
+export async function getServerSideProps(context) {
+    let fetchContent = await fetch("http://localhost:3000/api/loginStatus")
+    const fetchData = await fetchContent.json()
+    return fetchContent.status == 200 ? {
+      props: {fetchData},
+    } : {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+      props: {},
+    }
+  }
 
 export default CollegeSignin;

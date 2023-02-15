@@ -9,14 +9,18 @@ export default async function handler(req, res) {
 
         const auth = firebase.auth()
         const AvinyaConnect = db.collection("Alumni")
+        const verification = db.collection("CollegeDB")
         const existingUser = await AvinyaConnect.where('email', '==', req.body.email).get()
         if (existingUser.empty) {
             // console.log("Auth")
             bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
                 firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password)
                     .then((userCredential) => {
+
                         AvinyaConnect.add({ ...req.body, password: hash }).then(() => {
-                            res.status(200).json({ "status":"200" });
+                            verification.doc("Verification Request").set(req.body).then(()=>{
+                                res.status(200).json({ "status":"200" });
+                            })
                         })
                     })
                     .catch((error) => {

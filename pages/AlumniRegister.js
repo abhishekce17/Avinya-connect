@@ -13,9 +13,10 @@ import {
 }
     from "mdb-react-ui-kit";
 import styles from "../styles/Signin.module.css"
+import { useRouter } from "next/router";
 
 function AlumniRegister() {
-
+    const router = useRouter()
     const [alumniDetails,setAlumniDetails] = useState({"first name":"", "last name":"", "middle name":"", gender:"male", "number":"",email:"", password:"", "college name":"", "gr no.":"", "academic year":"", "Birth Date":""})
     const [confirmPass, setConfirmPass] = useState("")
 
@@ -43,6 +44,11 @@ function AlumniRegister() {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(alumniDetails),
+          })
+          api.then((res)=>{
+            if(res.status === 200){
+                router.push("/")
+            }
           })
         }
     }
