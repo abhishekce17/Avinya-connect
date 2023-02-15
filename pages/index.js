@@ -1,13 +1,18 @@
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import { useContext, useEffect } from 'react'
+import SiteContext from '@/Context/SiteContext'
 
-const inter = Inter({ subsets: ['latin'] })
+export default function Home(props) {
 
-export default function Home() {
-  const costumeStyle={
-    "height":"auto",
-    "width":"100%"
-  }
+  const context = useContext(SiteContext)
+useEffect(()=>{
+  context.userType[1](props.fetchData)
+},[])
+const costumeStyle={
+  "height":"auto",
+  "width":"100%"
+}
   return (
     <>
       <main className={styles.main} >
@@ -53,4 +58,18 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  let fetchContent = await fetch("http://localhost:3000/api/loginStatus")
+  const fetchData = await fetchContent.json()
+  return fetchContent.status == 200 ? {
+    props: {fetchData},
+  } : {
+    redirect: {
+      permanent: false,
+      destination: "/",
+    },
+    props: {},
+  }
 }

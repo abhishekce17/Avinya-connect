@@ -8,12 +8,12 @@ export default async function handler(req, res) {
     if (req.method === "POST") {
 
         const auth = firebase.auth()
-        const AvinyaConnect = db.collection("Alumni")
-        const existingUser = await AvinyaConnect.where('email', '==', req.body.email).get()
+        const AvinyaConnect = db.collection("CollegeDB")
+        const existingUser = await AvinyaConnect.where('college id', '==', req.body['college id']).get()
         if (existingUser.empty) {
             // console.log("Auth")
             bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
-                firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password)
+                firebase.auth().createUserWithEmailAndPassword(req.body['college id'], hash)
                     .then((userCredential) => {
                         AvinyaConnect.add({ ...req.body, password: hash }).then(() => {
                             res.status(200).json({ "status":"200" });

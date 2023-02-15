@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     MDBBtn,
     MDBContainer,
@@ -13,11 +13,12 @@ import {
 }
     from "mdb-react-ui-kit";
 import styles from "../styles/Signin.module.css"
+import { useRouter } from "next/router";
 
-function App() {
-
+function CollegeRegister() {
     const [collegeDetails, setCollegeDtails] = useState({"college name":"", "college id":"", "college type":"", district:"", "password":""})
     const [confirmPass, setConfirmPass] = useState("")
+    const router = useRouter()
 
     function handleChange(e){
         const {name, value} = e.target
@@ -29,9 +30,24 @@ function App() {
     function register(e){
         e.preventDefault()
         if(confirmPass === collegeDetails.password){
-            console.log(collegeDetails)
+        const api = fetch('/api/collegeregister', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(collegeDetails),
+          })
+          api.then((res)=>{
+            if(res.status === 200){
+                router.push("/")
+            }
+            else{
+                router.push("/CollegeRegister")
+            }
+          })
         }
     }
+
     return (<div className={styles.registerContainer} >
         <div className={styles.register} >
             <MDBContainer className="my-5">
@@ -48,24 +64,24 @@ function App() {
                                 </div>
 
                                 <h5 className="fw-normal my-4 pb-3" style={{ letterSpacing: "1px" }}>Sign into your account</h5>
-                                <MDBInput name="college name" value={collegeDetails["college name"]} onChange={handleChange} wrapperClass="mb-2" label="College Name" id="formControlLg" type="text" size="lg" />
+                                <MDBInput required name="college name" value={collegeDetails["college name"]} onChange={handleChange} wrapperClass="mb-2" label="College Name" id="formControlLg" type="text" size="lg" />
                                 <MDBRow>
                                     <MDBCol md="4">
-                                        <MDBInput name="college id" value={collegeDetails["college id"]} onChange={handleChange} wrapperClass="mb-2" label="College Id" id="formControlLg" type="text" size="lg" />
+                                        <MDBInput required name="college id" value={collegeDetails["college id"]} onChange={handleChange} wrapperClass="mb-2" label="College Id" id="formControlLg" type="text" size="lg" />
                                     </MDBCol>
                                     <MDBCol md="4">
-                                        <MDBInput wrapperClass="mb-2" name="college type" value={collegeDetails["college type"]} onChange={handleChange} label="College type" id="formControlLg" type="text" size="lg" />
+                                        <MDBInput required wrapperClass="mb-2" name="college type" value={collegeDetails["college type"]} onChange={handleChange} label="College type" id="formControlLg" type="text" size="lg" />
                                     </MDBCol>
                                     <MDBCol md="4">
-                                        <MDBInput name="district" value={collegeDetails.district} onChange={handleChange} wrapperClass="mb-2" label="District" id="formControlLg" type="text" size="lg" />
+                                        <MDBInput required name="district" value={collegeDetails.district} onChange={handleChange} wrapperClass="mb-2" label="District" id="formControlLg" type="text" size="lg" />
                                     </MDBCol>
                                 </MDBRow>
                                 <MDBRow>
                                     <MDBCol md="6">
-                                        <MDBInput wrapperClass="mb-2" name="password" value={collegeDetails.password} onChange={handleChange} label="Password" id="formControlLg" type="password" size="lg" />
+                                        <MDBInput required wrapperClass="mb-2" name="password" value={collegeDetails.password} onChange={handleChange} label="Password" id="formControlLg" type="password" size="lg" />
                                     </MDBCol>
                                     <MDBCol md="6">
-                                        <MDBInput wrapperClass="mb-2"value={confirmPass} onChange={handleChange} name={"confirmPass"} label="Confirm Password" id="formControlLg" type="password" size="lg" />
+                                        <MDBInput required wrapperClass="mb-2"value={confirmPass} onChange={handleChange} name={"confirmPass"} label="Confirm Password" id="formControlLg" type="password" size="lg" />
                                     </MDBCol>
                                 </MDBRow>
 
@@ -87,4 +103,4 @@ function App() {
     );
 }
 
-export default App;
+export default CollegeRegister;
