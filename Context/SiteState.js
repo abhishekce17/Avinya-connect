@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import siteContext from './SiteContext'
+import SiteContext from './SiteContext'
 
 const SiteState = (props) => {
     const [statusAndType, setUserType] = useState({})
     const value = {
-        userType : [userType, setUserType]
+        userType : [statusAndType, setUserType]
     }
 
     return (
-        <siteContext.Provider value={value} >
+        <SiteContext.Provider value={value} >
             {props.children}
-        </siteContext.Provider>
+        </SiteContext.Provider>
     )
 }
 

@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         if (existingUser.empty) {
             // console.log("Auth")
             bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
-                firebase.auth().createUserWithEmailAndPassword(req.body['college id'], hash)
+                firebase.auth().createUserWithEmailAndPassword(req.body['college id'], req.body.password)
                     .then((userCredential) => {
                         AvinyaConnect.add({ ...req.body, password: hash }).then(() => {
                             res.status(200).json({ "status":"200" });

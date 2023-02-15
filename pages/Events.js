@@ -2,8 +2,11 @@ import SiteContext from '@/Context/SiteContext'
 import React, { useContext, useEffect } from 'react'
 import styles from "../styles/Event.module.css"
 
-const Events = () => {
+const Events = (props) => {
     const context = useContext(SiteContext)
+    useEffect(()=>{
+        context.userType[1](props.fetchData)
+      },[])
     return (
         <div className={styles.eventSection} >
             <div className={styles.allEventsContainer} >
@@ -130,7 +133,7 @@ const Events = () => {
                         </div>
                     </div>
                 </div>
-                {context.userType[0].status === "200" &&
+                {props.fetchData.status === "200" &&
                 <center>
                     <a href="/CreateEvent" style={{background:"#5f9ea0"}}  className='btn btn-lg btn-primary' >Add Event</a>
                 </center>
@@ -139,5 +142,19 @@ const Events = () => {
         </div>
     )
 }
+
+export async function getServerSideProps(context) {
+    let fetchContent = await fetch("http://localhost:3000/api/loginStatus")
+    const fetchData = await fetchContent.json()
+    return fetchContent.status == 200 ? {
+      props: {fetchData},
+    } : {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+      props: {},
+    }
+  }
 
 export default Events

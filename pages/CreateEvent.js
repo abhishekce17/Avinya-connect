@@ -1,8 +1,13 @@
+import SiteContext from '@/Context/SiteContext'
 import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 import styles from "../styles/EventCreation.module.css"
 
-const CreateEvent = () => {
+const CreateEvent = (props) => {
+  const context = useContext(SiteContext)
+  useEffect(()=>{
+    context.userType[1](props.fetchData)
+  },[])
   const router = useRouter()
   const [CPCount, setCPCount] = useState(1)
   const [eventDetails, setEventDetails] = useState({ "event name": "", "image link": "", "description": "", "chair persons": [""], "location": "", "date and time": "" })
@@ -85,12 +90,11 @@ const api = fetch('/api/submitevent', {
     </div>
   )
 }
-
 export async function getServerSideProps(context) {
-  let fetchPost = await fetch("http://localhost:3000/api/submitevent")
-  console.log(fetchPost)
-  return fetchPost.status == 200 ? {
-    props: {},
+  let fetchContent = await fetch("http://localhost:3000/api/loginStatus")
+  const fetchData = await fetchContent.json()
+  return fetchContent.status == 200 ? {
+    props: {fetchData},
   } : {
     redirect: {
       permanent: false,
@@ -99,5 +103,6 @@ export async function getServerSideProps(context) {
     props: {},
   }
 }
+
 
 export default CreateEvent
