@@ -1,0 +1,15 @@
+.signInContainer, .registerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .signIn{
+    margin-top: 62px;
+    width: max-content;
+} */
+
+.register, .signIn{
+    margin-top: 62px;
+    width: 700px;
+}
