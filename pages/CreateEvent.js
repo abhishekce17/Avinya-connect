@@ -3,11 +3,12 @@ import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 import styles from "../styles/EventCreation.module.css"
 
+
 const CreateEvent = (props) => {
-  const context = useContext(SiteContext)
-  useEffect(()=>{
-    context.userType[1](props.fetchData)
-  },[])
+  // const context = useContext(SiteContext)
+  // useEffect(()=>{
+  //   context.userType[1](props.fetchData)
+  // },[])
   const router = useRouter()
   const [CPCount, setCPCount] = useState(1)
   const [eventDetails, setEventDetails] = useState({ "event name": "", "image link": "", "description": "", "chair persons": [""], "location": "", "date and time": "" })

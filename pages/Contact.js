@@ -39,9 +39,6 @@ class Contact extends Component {
 
 render() {
   const { submitMessage, submitMessageTextColor } = this.state;
-  // useEffect(() => {
-  //   context.userType[1](this.props.fetchData)
-  // }, [])
   return (
     <div className="container py-5 ">
       <div className={styles.mapFeature} >
@@ -112,20 +109,6 @@ render() {
     </div>
   );
 }
-}
-
-export async function getServerSideProps(context) {
-  let fetchContent = await fetch("http://localhost:3000/api/loginStatus")
-  const fetchData = await fetchContent.json()
-  return fetchContent.status == 200 ? {
-    props: { fetchData },
-  } : {
-    redirect: {
-      permanent: false,
-      destination: "/",
-    },
-    props: {},
-  }
 }
 
 export default Contact;

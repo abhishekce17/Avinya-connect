@@ -26,7 +26,7 @@ const Footer = () => {
                 Projects
               </Link> 
               <div>
-                <Link href="/contact" className="d-block text-light p-1">
+                <Link href="/Contact" className="d-block text-light p-1">
                   Contact Us
                 </Link>
               </div>
@@ -41,19 +41,19 @@ const Footer = () => {
           </div>
           <div className="col-12 col-md-4 py-2">
             <h5 className="text-dark pb-3">Social</h5>
-            <a className="d-block text-light p-1" href="c/">
+            <a className="d-block text-light p-1" href="mailto:admissions@mum.amity.edu">
               Email{" "}
               <span>
                 <i className="fa fa-envelope"></i>
               </span>
             </a>
-            <a className="d-block text-light p-1" href="c/">
+            <a className="d-block text-light p-1" href="https://www.linkedin.com/school/amityuniversitymumbai/">
               LinkedIn{" "}
               <span>
                 <i className="fa fa-linkedin"></i>
               </span>
             </a>
-            <a className="d-block text-light p-1" href="c/">
+            <a className="d-block text-light p-1" href="https://api.whatsapp.com/send?phone=917045780129">
               Whatsapp{" "}
               <span>
                 <i className="fa fa-whatsapp"></i>

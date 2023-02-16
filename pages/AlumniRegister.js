@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 
 function AlumniRegister() {
     const router = useRouter()
-    const [alumniDetails,setAlumniDetails] = useState({"first name":"", "last name":"", "middle name":"", gender:"male", "number":"",email:"", password:"", "college name":"", "gr no.":"", "academic year":"", "Birth Date":""})
+    const [alumniDetails,setAlumniDetails] = useState({"first name":"", "last name":"", "middle name":"", gender:"male", "number":"",email:"", password:"", "college name":"","college email":"", "gr no.":"", "academic year":"", "Birth Date":"", "img file":""})
     const [confirmPass, setConfirmPass] = useState("")
 
     function handleChange(e){
@@ -65,7 +65,6 @@ function AlumniRegister() {
                             <MDBCardBody className="d-flex flex-column">
 
                                 <div className="d-flex flex-row mt-2">
-                                    <MDBIcon fas icon="cubes fa-3x me-3" style={{ color: "#ff6219" }} />
                                     <span className="h1 fw-bold mb-0">Register</span>
                                 </div>
 
@@ -96,9 +95,11 @@ function AlumniRegister() {
                                     </MDBRow>
 
                                 </div>
+                                <MDBInput required wrapperClass="mb-2" name="img file" value={alumniDetails["img file"]} onChange={handleChange} label="Profile photo link" id="formControlLg" type="text" placeholder="profile photo" size="lg" />
                                 <MDBInput required wrapperClass="mb-2" name="number" value={alumniDetails.number} onChange={handleChange} label="Phone No." id="formControlLg" type="text" size="lg" />
                                 <MDBInput required wrapperClass="mb-2" label="Email address" id="formControlLg" type="email" size="lg" name="email" value={alumniDetails.email} onChange={handleChange} />
                                 <MDBInput required wrapperClass="mb-2" label="College Name" name="college name" value={alumniDetails["college name"]} onChange={handleChange} id="formControlLg" type="text" size="lg" />
+                                <MDBInput required wrapperClass="mb-2" label="College Email" name="college email" value={alumniDetails["college email"]} onChange={handleChange} id="formControlLg" type="text" size="lg" />
                                 <MDBRow>
                                     <MDBCol md="6">
                                         <MDBInput required wrapperClass="mb-2" name="gr no." value={alumniDetails["gr no."]} onChange={handleChange} label="GR No." id="formControlLg" type="text" size="lg" />

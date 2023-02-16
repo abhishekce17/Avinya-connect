@@ -9,7 +9,10 @@ import { useRouter } from "next/router"
 const Navbar = (props) => {
     const context = useContext(SiteContext)
     const router = useRouter()
-    console.log(context.userType[0].userType)
+    // console.log(props)
+    function routeJopPortal(){
+        console.log(router.replace("http://localhost:3001/Oppurtunities"))
+    }
     function logOut() {
         const api = fetch('/api/logout', {
             method: 'GET',
@@ -28,7 +31,7 @@ const Navbar = (props) => {
             <div className={styles.dropdown}>
                 <Link href="#" >Programs & Events</Link>
                 <div className={styles.dropdownContent}>
-                    <Link href="/Oppurtunities">Oppurtunities</Link>
+                    <Link href="" onClick={routeJopPortal} >Oppurtunities</Link>
                     <Link href="/Events">Events</Link>
                     {/* <Link href="#">Contact</Link> */}
                 </div>
@@ -39,6 +42,7 @@ const Navbar = (props) => {
                     <Link href="/Administrators">Administrator</Link>
                     {/* <Link href="#">Staff</Link> */}
                     <Link href="Contact">Contact</Link>
+                    <Link href="Community">Community</Link>
                 </div>
             </div>
             <div className={styles.dropdown}>
@@ -46,9 +50,9 @@ const Navbar = (props) => {
             </div>
             {(context.userType[0].status === "200" && context.userType[0].userType !== "") ?
                 <>
-                    <div className={styles.dropdown}>
+                    {/* <div className={styles.dropdown}>
                         <Link href="Dashboard" >Dashboard</Link>
-                    </div>
+                    </div> */}
                     <div className={styles.dropdown}>
                         <Link href="" onClick={logOut} >Log out</Link>
                     </div>
